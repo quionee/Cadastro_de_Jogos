@@ -5,16 +5,12 @@
  */
 package cadastro_jogos;
 
-/**
- *
- * @author aluno
- */
-public class Cartas extends Jogo {
+public class JogoCartas extends Jogo {
     private int quantidadeCartas;
     private int quantidadeJogadores;
 
-    public Cartas(int quantidadeCartas, int quantidadeJogadores, int codigo, String nome, Integer faixaEtaria, int popularidade) {
-        super(codigo, nome, faixaEtaria, popularidade);
+    public JogoCartas(int quantidadeCartas, int quantidadeJogadores, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
+        super(codigo, nome, faixaEtaria, popularidade, anoLancamento);
         this.quantidadeCartas = quantidadeCartas;
         this.quantidadeJogadores = quantidadeJogadores;
     }
