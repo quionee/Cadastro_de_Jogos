@@ -14,14 +14,17 @@ public class Jogo {
     private String nome;
     private int faixaEtaria;
     private int popularidade;
+    private int anoLancamento;
 
-    public Jogo(int codigo, String nome, int faixaEtaria, int popularidade) {
+    public Jogo(int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
         this.codigo = codigo;
         this.nome = nome;
         this.faixaEtaria = faixaEtaria;
         this.popularidade = popularidade;
+        this.anoLancamento = anoLancamento;
     }
 
+    
     public void setPopularidade(int popularidade) {
         this.popularidade = popularidade;
     }

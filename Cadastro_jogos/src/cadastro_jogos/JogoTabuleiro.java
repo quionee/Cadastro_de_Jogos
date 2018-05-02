@@ -9,13 +9,13 @@ package cadastro_jogos;
  *
  * @author aluno
  */
-public class Tabuleiro extends Jogo {
+public class JogoTabuleiro extends Jogo {
     private String material;
     private int quantidadePecas;
     private int quantidadeJogadores;
 
-    public Tabuleiro(String material, int quantidadePecas, int quantidadeJogadores, int codigo, String nome, Integer faixaEtaria, int popularidade) {
-        super(codigo, nome, faixaEtaria, popularidade);
+    public JogoTabuleiro(String material, int quantidadePecas, int quantidadeJogadores, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
+        super(codigo, nome, faixaEtaria, popularidade, anoLancamento);
         this.material = material;
         this.quantidadePecas = quantidadePecas;
         this.quantidadeJogadores = quantidadeJogadores;
