@@ -19,7 +19,7 @@ public class Main {
            
         Controlador cont = new Controlador();
         cont.cadastraJogo();
-        
+        cont.salvarNoArq();
     }
 
     

@@ -44,5 +44,9 @@ public class Jogo {
     public int getCodigo() {
         return codigo;
     }
+
+    public int getAnoLancamento() {
+        return anoLancamento;
+    }
    
 }
