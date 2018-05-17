@@ -13,8 +13,8 @@ public class JogoEletronico extends Jogo {
     private String produtora;
     private String genero;
     
-    public JogoEletronico(String produtora, String genero, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
-        super(codigo, nome, faixaEtaria, popularidade, anoLancamento);
+    public JogoEletronico(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, String produtora, String genero) {
+        super(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento);
         this.produtora = produtora;
         this.genero = genero;
     }

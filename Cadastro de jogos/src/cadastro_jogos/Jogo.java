@@ -10,18 +10,28 @@ package cadastro_jogos;
  * @author aluno
  */
 public class Jogo {
+    private String tipo;
     private int codigo;
     private String nome;
     private int faixaEtaria;
     private int popularidade;
     private int anoLancamento;
 
-    public Jogo(int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
+    public Jogo(String tipo,int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
+        this.tipo = tipo;
         this.codigo = codigo;
         this.nome = nome;
         this.faixaEtaria = faixaEtaria;
         this.popularidade = popularidade;
         this.anoLancamento = anoLancamento;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     
@@ -48,5 +58,5 @@ public class Jogo {
     public int getAnoLancamento() {
         return anoLancamento;
     }
-   
+
 }

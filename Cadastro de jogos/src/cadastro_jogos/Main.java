@@ -18,10 +18,38 @@ public class Main {
     public static void main(String[] args) throws IOException {
            
         Controlador cont = new Controlador();
-        cont.cadastraJogo();
-        cont.salvarNoArq();
+  
+        System.out.println("Digite a opcao");
+        System.out.println("1 para inserir");
+        System.out.println("2 para Salvar");
+        System.out.println("3 para listar jogos");
+        System.out.println("4 para terminar");
+        
+        Scanner ler = new Scanner(System.in);
+        
+        int opcao = Integer.parseInt(ler.nextLine());
+        
+        while(opcao != 4){
+            
+            switch(opcao){
+                case 1:
+                    cont.cadastraJogo();
+                break;  
+                
+                case 2:
+                    cont.salvarNoArq();
+                break;
+                case 3:
+                    cont.lerArquivo();
+                break;
+            }
+            
+            System.out.println("Digite a opcao");
+            System.out.println("1 para inserir");
+            System.out.println("2 para Salvar");
+            System.out.println("3 para listar jogos");
+            System.out.println("4 para terminar");
+            opcao = ler.nextInt();
+        }
     }
-
-    
-    
 }

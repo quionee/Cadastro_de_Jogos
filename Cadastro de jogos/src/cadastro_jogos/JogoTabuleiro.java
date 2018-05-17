@@ -14,8 +14,8 @@ public class JogoTabuleiro extends Jogo {
     private int quantidadePecas;
     private int quantidadeJogadores;
 
-    public JogoTabuleiro(String material, int quantidadePecas, int quantidadeJogadores, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
-        super(codigo, nome, faixaEtaria, popularidade, anoLancamento);
+    public JogoTabuleiro(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, String material, int quantidadePecas, int quantidadeJogadores) {
+        super(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento);
         this.material = material;
         this.quantidadePecas = quantidadePecas;
         this.quantidadeJogadores = quantidadeJogadores;
