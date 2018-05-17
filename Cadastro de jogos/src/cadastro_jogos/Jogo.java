@@ -16,25 +16,27 @@ public class Jogo {
     private int faixaEtaria;
     private int popularidade;
     private int anoLancamento;
+    private int quantidadeJogadores;
+    Produtora produtora;
 
-    public Jogo(String tipo,int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento) {
+    public Jogo(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int qtdJogadores, Produtora produtora) {
         this.tipo = tipo;
         this.codigo = codigo;
         this.nome = nome;
         this.faixaEtaria = faixaEtaria;
         this.popularidade = popularidade;
         this.anoLancamento = anoLancamento;
+        this.quantidadeJogadores = qtdJogadores;
+        this.produtora = produtora;
     }
+
+
+   
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    
     public void setPopularidade(int popularidade) {
         this.popularidade = popularidade;
     }

@@ -10,20 +10,15 @@ package cadastro_jogos;
  * @author aluno
  */
 public class JogoEletronico extends Jogo {
-    private String produtora;
     private String genero;
-    
-    public JogoEletronico(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, String produtora, String genero) {
-        super(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento);
-        this.produtora = produtora;
+
+    public JogoEletronico(String genero, String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int qtdJogadores, Produtora produtora) {
+        super(tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores, produtora);
         this.genero = genero;
     }
 
-    
-    public String getProdutora() {
-        return produtora;
-    }
-    
+
+
     public String getGenero() {
         return genero;
     }

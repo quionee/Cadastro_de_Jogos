@@ -22,33 +22,51 @@ public class Main {
         System.out.println("Digite a opcao");
         System.out.println("1 para inserir");
         System.out.println("2 para Salvar");
-        System.out.println("3 para listar jogos");
-        System.out.println("4 para terminar");
+        System.out.println("3 para listar jogos salvos no arquivo");
+        System.out.println("4 para remover");
+        System.out.println("5 para imprimir lista de jogos");
+        System.out.println("6 para carregar arquivo");
+        System.out.println("7 para terminar \n");
         
         Scanner ler = new Scanner(System.in);
         
         int opcao = Integer.parseInt(ler.nextLine());
         
-        while(opcao != 4){
+        while(opcao != 7){
             
             switch(opcao){
                 case 1:
                     cont.cadastraJogo();
-                break;  
+                    break;  
                 
                 case 2:
                     cont.salvarNoArq();
-                break;
+                    break;
                 case 3:
                     cont.lerArquivo();
-                break;
+                    break;
+                case 4:
+                    int id = ler.nextInt();
+                    cont.removeList(id);
+                    break;
+                case 5:
+                    cont.imprimeList();
+                    break;
+                case 6:
+                    cont.CarregarArquivo();
+                    break;
+               
             }
             
             System.out.println("Digite a opcao");
             System.out.println("1 para inserir");
             System.out.println("2 para Salvar");
-            System.out.println("3 para listar jogos");
-            System.out.println("4 para terminar");
+            System.out.println("3 para listar jogos salvos no arquivo");
+            System.out.println("4 para remover");
+            System.out.println("5 imprimir a lista de jogos");
+            System.out.println("6 para carregar arquivo");
+            System.out.println("7 para terminar \n");
+            
             opcao = ler.nextInt();
         }
     }

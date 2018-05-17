@@ -6,20 +6,15 @@
 package cadastro_jogos;
 public class JogoCartas extends Jogo {
     private int quantidadeCartas;
-    private int quantidadeJogadores;
 
-    public JogoCartas(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int quantidadeCartas, int quantidadeJogadores) {
-        super(tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento);
+    public JogoCartas(int quantidadeCartas, String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int qtdJogadores, Produtora produtora) {
+        super(tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores, produtora);
         this.quantidadeCartas = quantidadeCartas;
-        this.quantidadeJogadores = quantidadeJogadores;
     }
+
 
     public int getQuantidadeCartas() {
         return this.quantidadeCartas;
-    }
-
-    public int getQuantidadeJogadores() {
-        return this.quantidadeJogadores;
     }
     
 }

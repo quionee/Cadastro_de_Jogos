@@ -12,14 +12,14 @@ package cadastro_jogos;
 public class JogoTabuleiro extends Jogo {
     private String material;
     private int quantidadePecas;
-    private int quantidadeJogadores;
 
-    public JogoTabuleiro(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, String material, int quantidadePecas, int quantidadeJogadores) {
-        super(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento);
+    public JogoTabuleiro(String material, int quantidadePecas, String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int qtdJogadores, Produtora produtora) {
+        super(tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores, produtora);
         this.material = material;
         this.quantidadePecas = quantidadePecas;
-        this.quantidadeJogadores = quantidadeJogadores;
     }
+
+
 
     public String getMaterial() {
         return material;
@@ -28,10 +28,4 @@ public class JogoTabuleiro extends Jogo {
     public int getQuantidadePecas() {
         return quantidadePecas;
     }
-
-    public int getQuantidadeJogadores() {
-        return quantidadeJogadores;
-    }
-    
-    
 }

@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.management.Query.not;
 
 public class Controlador {
     
@@ -36,7 +39,7 @@ public class Controlador {
         String tipo = ler.nextLine();// verifica qual tipo de jogo é
        // criei um if pra cada pq cada tipo tem parametros diferentes
        // criei 3 arrayList tbem um cada classe
-        if(tipo.equals("C") || tipo.equals("T") || tipo.equals("E") ){
+        if(tipo.equals("C") || tipo.equals("T") || tipo.equals("E") ) {
                         
             System.out.print("Codigo: ");
             int codigo = Integer.parseInt(ler.nextLine());
@@ -52,32 +55,38 @@ public class Controlador {
             
             System.out.print("Ano de Lancamento: ");
             int anoLancamento = Integer.parseInt(ler.nextLine());
+   
+            System.out.print("Quantidade de Jogadores : ");
+            int qtdJogadores = Integer.parseInt(ler.nextLine());
             
-            if(tipo.equals("C")){       /////////// insere um jogo de cartas 
+            System.out.print("Produtora : ");
+            System.out.print("CNPJ : ");
+            String cnpj = ler.nextLine();
+            
+            System.out.println("Nome");
+            String nomeP = ler.nextLine();
+            
+            Produtora produtora = new Produtora(cnpj,nomeP);
+           
+            if(tipo.equals("C")) {       /////////// insere um jogo de cartas 
 
                 System.out.print("Quantidade de Cartas: ");
                 int qtdCartas = Integer.parseInt(ler.nextLine());
 
-                System.out.print("Quantidade de Jogadores : ");
-                int qtdJogadores = Integer.parseInt(ler.nextLine());
-
-                 Jogo umJogo = new JogoCartas(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdCartas, qtdJogadores);
-                 System.out.println("fala galera");
+                Jogo umJogo = new JogoCartas(qtdCartas,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
+                System.out.println("fala galera");
                 // this.jogosCartas.add((JogoCartas) umJogo);
-                 this.lista.add(umJogo);
+                this.lista.add(umJogo);
             }
-            else if(tipo.equals("E")){           // insere um jogo eletronico
-   
-                System.out.print("Nome da produtora: ");
-                String produtora = ler.nextLine();
+            else if(tipo.equals("E")) {           // insere um jogo eletronico
 
                 System.out.print("Genero : ");
                 String genero = ler.nextLine();
 
-                Jogo umJogo = new JogoEletronico(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,produtora,genero);
+                Jogo umJogo = new JogoEletronico(genero,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
                 this.lista.add(umJogo);
             }
-            else if(tipo.equals("T")){       // insere um jogo de tabuleiro
+            else if(tipo.equals("T")) {       // insere um jogo de tabuleiro
          
                 System.out.print("Nome da Material do tabuleiro: ");
                 String material = ler.nextLine();
@@ -85,27 +94,23 @@ public class Controlador {
                 System.out.print("Quantidade de Pecas: ");
                 int qtdPecas = Integer.parseInt(ler.nextLine());
 
-                System.out.print("Quantidade de Jogadores : ");
-                int qtdJogadores = Integer.parseInt(ler.nextLine());
-
-                Jogo umJogo = new JogoTabuleiro(tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,material,qtdPecas,qtdJogadores);
+                Jogo umJogo = new JogoTabuleiro(material,qtdPecas, tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores, produtora);
 
                 this.lista.add(umJogo);
             }
         }
                 
         else {
-            System.out.println("TENTE NOVAMENTE");
+            System.out.println("TENTE NOVAMENTE \n");
         }
 
     }
     
-       // mano essa funcao ta muito grande e feia... eu devo estar fazendo errado.. perguntar os cara.
     public void salvarNoArq() throws IOException {
-        FileWriter arquivo = new FileWriter("cadastro_de_jogos", true);
+        FileWriter arquivo = new FileWriter("cadastro_de_jogos", false);
         PrintWriter gravarArq = new PrintWriter(arquivo);
  
-          for(Jogo jogo : this.lista){
+          for(Jogo jogo : this.lista) {
               
             gravarArq.println(jogo.getTipo());
             gravarArq.println(jogo.getCodigo());
@@ -113,31 +118,98 @@ public class Controlador {
             gravarArq.println(jogo.getFaixaEtaria());
             gravarArq.println(jogo.getPopularidade());
             gravarArq.println(jogo.getAnoLancamento());
+            gravarArq.println(jogo.produtora.getCnpj());
+            gravarArq.println(jogo.produtora.getNome());
             
-            if(jogo instanceof JogoCartas){
+            if(jogo instanceof JogoCartas) {
                 
                 gravarArq.println(((JogoCartas)jogo).getQuantidadeCartas());
-                gravarArq.println(((JogoCartas)jogo).getQuantidadeJogadores());
-                gravarArq.flush();
             }
-            else if(jogo instanceof JogoTabuleiro){
+            else if(jogo instanceof JogoTabuleiro) {
 
                 gravarArq.println(((JogoTabuleiro)jogo).getMaterial());
-                gravarArq.println(((JogoTabuleiro)jogo).getQuantidadePecas());
-                gravarArq.println(((JogoTabuleiro)jogo).getQuantidadeJogadores());
-                gravarArq.flush();
+                gravarArq.println(((JogoTabuleiro)jogo).getQuantidadePecas());;
             }
             else if(jogo instanceof JogoEletronico){
-                
-                gravarArq.println(((JogoEletronico)jogo).getProdutora());
                 gravarArq.println(((JogoEletronico)jogo).getGenero());
-                gravarArq.flush();
             }
         }
-
+              gravarArq.flush();
     }
     
-    public void lerArquivo(){
+    public void CarregarArquivo() throws IOException {
+        
+        FileReader arq;
+        try {
+              
+            arq = new FileReader("cadastro_de_jogos");
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha = lerArq.readLine();
+             if(linha == null){
+          System.out.println("Arquivo vazio \n");
+             }
+             else{
+      
+                String tipo = linha;
+                while (linha != null) {
+
+                    if(tipo.equals("C") || tipo.equals("T") || tipo.equals("E") ) {
+
+                        int codigo = Integer.parseInt(lerArq.readLine());
+
+                        String nome = lerArq.readLine();
+
+                        int faixaEtaria = Integer.parseInt(lerArq.readLine());
+
+                        int popularidade = Integer.parseInt(lerArq.readLine());
+
+                        int anoLancamento = Integer.parseInt(lerArq.readLine());
+                        
+                        int qtdJogadores = Integer.parseInt(lerArq.readLine());
+
+                        String cnpj = ler.nextLine();
+          
+                        String nomeP = ler.nextLine();
+                                                
+                        Produtora produtora = new Produtora(cnpj,nomeP);
+                       
+                        if(tipo.equals("C")) { // se for um jogo de cartas
+
+
+                            int qtdCartas = Integer.parseInt(lerArq.readLine());
+
+                            Jogo umJogo = new JogoCartas(qtdCartas,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
+                            this.lista.add((JogoCartas)umJogo);
+                        }
+                        else if(tipo.equals("E")) {
+
+
+                            String genero = lerArq.readLine();
+
+                            Jogo umJogo = new JogoEletronico(genero,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
+                            this.lista.add((JogoEletronico)umJogo);
+                        }
+                        else if(tipo.equals("T")) {
+
+                            String material = lerArq.readLine();
+
+                            int qtdPecas = Integer.parseInt(lerArq.readLine());
+
+                            Jogo umJogo = new JogoTabuleiro(material,qtdPecas,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
+                            this.lista.add((JogoTabuleiro)umJogo);
+                        }
+
+                        linha = lerArq.readLine();
+                        tipo = linha;
+                      }
+                   }
+                arq.close();
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+              }
+        }
+    public void lerArquivo() {
         
       try {
       FileReader arq = new FileReader("cadastro_de_jogos");
@@ -146,84 +218,131 @@ public class Controlador {
       String linha = lerArq.readLine(); // lê a primeira linha
 // a variável "linha" recebe o valor "null" quando o processo
 // de repetição atingir o final do arquivo texto
-      String t = linha;
-      while (linha != null) {
-        
-        System.out.println(t);
-        if(t.equals("C") || t.equals("T") || t.equals("E") ){
-            
-         linha = lerArq.readLine();
-         System.out.println("Codigo do Jogo :" + linha);
-         
-         linha = lerArq.readLine();
-         System.out.println("Nome :" + linha);
-         
-         linha = lerArq.readLine();
-         System.out.println("Faixa Etaria :" + linha);
-         
-         linha = lerArq.readLine();
-         System.out.println("Popularidade:" + linha);
-         
-         linha = lerArq.readLine();
-         System.out.println("Ano de Lancamento :" + linha);
-         
-            if(t.equals("C")){ // se for um jogo de cartas
-
-             linha = lerArq.readLine();
-             System.out.println("Quantidade de Cartas:" + linha);
-             
-             linha = lerArq.readLine();
-             System.out.println("Quantidade de Jogadores :" + linha);
-             System.out.println();
-             
-            }
-            else if(t.equals("E")){
-                
-            linha = lerArq.readLine();
-             System.out.println("Produtora :" + linha);
-             
-             linha = lerArq.readLine();
-             System.out.println("Genero :" + linha);
-             System.out.println();
-
-            }
-            else if(t.equals("T")){
-                
-             linha = lerArq.readLine();
-             System.out.println("AMterial do tabuleiro:" + linha);
-             
-             linha = lerArq.readLine();
-             System.out.println("Quantidades de pecas :" + linha);
-             
-             linha = lerArq.readLine();
-             System.out.println("Quantidades de jogadores:" + linha);
-             System.out.println();
-            }
-            
-            linha = lerArq.readLine();
-            t = linha;
-          }
+      if(linha == null){
+          System.out.println("Arquivo vazio \n");
       }
-        arq.close();
-    } catch (IOException e) {
-        System.err.printf("Erro na abertura do arquivo: %s.\n",
-          e.getMessage());
-    }
- 
-    System.out.println();
+      else{
+      
+        String t = linha;
+        while (linha != null) {
+
+          System.out.println(t);
+          if(t.equals("C") || t.equals("T") || t.equals("E") ) {
+
+              linha = lerArq.readLine();
+              System.out.println("Codigo do Jogo :" + linha);
+
+              linha = lerArq.readLine();
+              System.out.println("Nome :" + linha);
+
+              linha = lerArq.readLine();
+              System.out.println("Faixa Etaria :" + linha);
+
+              linha = lerArq.readLine();
+              System.out.println("Popularidade:" + linha);
+
+              linha = lerArq.readLine();
+              System.out.println("Ano de Lancamento :" + linha);
+
+              if(t.equals("C")) { // se for um jogo de cartas
+
+                  linha = lerArq.readLine();
+                  System.out.println("Quantidade de Cartas:" + linha);
+
+                  linha = lerArq.readLine();
+                  System.out.println("Quantidade de Jogadores :" + linha + "\n");
+
+              }
+              else if(t.equals("E")) {
+
+              linha = lerArq.readLine();
+               System.out.println("Produtora :" + linha);
+
+               linha = lerArq.readLine();
+               System.out.println("Genero :" + linha + "\n");
+
+              }
+              else if(t.equals("T")) {
+
+               linha = lerArq.readLine();
+               System.out.println("AMterial do tabuleiro:" + linha);
+
+               linha = lerArq.readLine();
+               System.out.println("Quantidades de pecas :" + linha);
+
+               linha = lerArq.readLine();
+               System.out.println("Quantidades de jogadores:" + linha + "\n");
+
+              }
+
+              linha = lerArq.readLine();
+              t = linha;
+            }
+        }
+          arq.close();
+        }
+      } catch (IOException e) {
+          System.err.printf("Erro na abertura do arquivo: %s.\n",
+            e.getMessage());
+      }
   }
     
-    public void remove(){
+    public void removeList(int id) throws FileNotFoundException {
         
-        // minha ideia é jogar o arquivo todo nas 3 lists aux sem o item que eu quero remover
-        // e depois inserir novamente tudo no arquivo apos truncar tuco
-        // deu preguica de acabar a funcao
-        System.out.println("Digite o id do jogo para ser deletado  :");
-        int id = Integer.parseInt(ler.nextLine());
+        if(lista.size() == 0){
+            
+            System.out.println("Lista vazia \n");
+        }
+        else{
+            boolean achou = false;
+            for (int i = 0; i < lista.size() && !achou; i++) {
+
+                Jogo j = lista.get(i);
+
+                if(j.getCodigo() == id) {
+                    achou = true;
+                    lista.remove(j);
+                    System.out.println("Removido com su su sucesso \n");
+                    break;
+                }
+            }
+            if(!achou){
+                System.out.println("ID invalido \n");
+            }
+        }
+    }
+    
+    
+    public void imprimeList() {
         
-        ArrayList<JogoCartas> jogosCartasAux = new ArrayList<JogoCartas>();
-        ArrayList<JogoEletronico> jogosEletronicosAux = new ArrayList<JogoEletronico>();
-        ArrayList<JogoTabuleiro> jogosTabuleiroAux = new ArrayList<JogoTabuleiro>();
+        if(this.lista.size() == 0) {
+            System.out.println("Lista vazia \n");
+        }
+        else {
+            for(Jogo jogo : this.lista) {
+
+                System.out.println(jogo.getTipo());
+                System.out.println(jogo.getCodigo());
+                System.out.println(jogo.getNome());
+                System.out.println(jogo.getFaixaEtaria());
+                System.out.println(jogo.getPopularidade());
+                System.out.println(jogo.getAnoLancamento());
+
+                if(jogo instanceof JogoCartas) {
+
+                    System.out.println(((JogoCartas)jogo).getQuantidadeCartas());
+                }
+                else if(jogo instanceof JogoTabuleiro) {
+
+                    System.out.println(((JogoTabuleiro)jogo).getMaterial());
+                    System.out.println(((JogoTabuleiro)jogo).getQuantidadePecas());
+                }
+                else if(jogo instanceof JogoEletronico) {
+
+                    System.out.println(((JogoEletronico)jogo).getGenero() + "\n");
+                }
+            }
+        }
     }
 }
 
