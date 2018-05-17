@@ -12,10 +12,10 @@
 <h1>Classes</h1>
 
 	A classe principal: [x]
-	-interação com o usuário
-	-exibição de menus
-	-leitura e escrita de dados na tela
-	-nenhuma outra classe pode ler dados na entrada padrão ou escrever na saída padrão.
+		-interação com o usuário
+		-exibição de menus
+		-leitura e escrita de dados na tela
+		-nenhuma outra classe pode ler dados na entrada padrão ou escrever na saída padrão.
     	Uma classe responsável pela gestão de cadastro dos dados a serem tratados [x]
     	Uma classe que represente os objetos que são cadastrados pelo sistema [x]
     	Uma classe cujos objetos representam um dos atributos do objeto cadastrado [x]
