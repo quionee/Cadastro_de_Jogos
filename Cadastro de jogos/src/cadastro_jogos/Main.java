@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+   Trabalho de Paradigmas de Linguagens de Programacao
+   Cadastro de Jogos
+   Copyright 2018 by Lorena Tavares, Rodrigo Herculano, William Coelho
+   Arquivo responsavel pela iteracao com o usuario
+*/
+
 package cadastro_jogos;
 
 import java.io.FileReader;
@@ -14,7 +16,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-
+    
     public static void main(String[] args) throws IOException {
         Controlador controlador = new Controlador();
   
@@ -32,21 +34,22 @@ public class Main {
         
         int opcao = Integer.parseInt(ler.nextLine());
         
+        System.out.println();
         while (opcao != 8) {
             switch (opcao) {
                 case 1:
                     controlador.cadastraJogo();
                     break;
                 case 2:
-                    System.out.println("Insira o codigo do jogo a ser removido: ");
+                    System.out.print("Insira o codigo do jogo a ser removido: ");
                     int id = ler.nextInt();
                     controlador.removeList(id);
                     break;
                 case 3:
-                    System.out.println("Digite o codigo do jogo a ser buscado: ");
+                    System.out.print("Digite o codigo do jogo a ser buscado: ");
                     int idBusca = ler.nextInt();
                     Jogo jogo = controlador.busca(idBusca);
-                    if(jogo == null) {
+                    if (jogo == null) {
                         System.out.println("\nCodigo invalido");
                     }
                     else {
@@ -81,7 +84,7 @@ public class Main {
             System.out.println("8 para terminar \n");
         
             opcao = ler.nextInt();
-            System.out.println("\n");
+            System.out.println();
         }
         System.out.println("\nPrograma encerrado!\n");
     }

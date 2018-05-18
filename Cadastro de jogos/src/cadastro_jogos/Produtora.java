@@ -1,14 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+   Trabalho de Paradigmas de Linguagens de Programacao
+   Cadastro de Jogos
+   Copyright 2018 by Lorena Tavares, Rodrigo Herculano, William Coelho
+   Arquivo onde tem-se uma classe que e' atributo da classe Jogo
+*/
+
 package cadastro_jogos;
 
-/**
- *
- * @author aluno
- */
 public class Produtora {
     private String cnpj;
     private String nome;

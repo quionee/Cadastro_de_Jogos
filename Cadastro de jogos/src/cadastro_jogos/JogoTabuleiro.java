@@ -1,14 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+   Trabalho de Paradigmas de Linguagens de Programacao
+   Cadastro de Jogos
+   Copyright 2018 by Lorena Tavares, Rodrigo Herculano, William Coelho
+   Arquivo onde tem-se uma classe filha de Jogo, jodos de tabuleiro
+*/
+
 package cadastro_jogos;
 
-/**
- *
- * @author aluno
- */
 public class JogoTabuleiro extends Jogo {
     private String material;
     private int quantidadePecas;
@@ -32,16 +30,18 @@ public class JogoTabuleiro extends Jogo {
     public int getQuantidadePecas() {
         return quantidadePecas;
     }
+    
+    @Override
     public void imprime() {
-        System.out.println("Tipo: Jogo Eletronico");
+        System.out.println("Tipo: " + this.getTipo());
         System.out.println("Codigo: " + this.getCodigo());
         System.out.println("Nome: " + this.getNome());
         System.out.println("Faixa Etaria: " + this.getFaixaEtaria());
         System.out.println("Popularidade: " + this.getPopularidade());
         System.out.println("Ano de lancamento: " + this.getAnoLancamento());
         System.out.println("Quantidade de jogadores: " + this.getQuantidadeJogadores());
-        System.out.println("Produtora: \n Nome: " + this.getProdutora().getNome());
-        System.out.println("CNPJ: " + this.getProdutora().getCnpj());
+        System.out.println("Produtora: \n  CNPJ: " + this.getProdutora().getCnpj());
+        System.out.println("  Nome: " + this.getProdutora().getNome());
         System.out.println("Material do Tabuleiro: " + this.getMaterial());
         System.out.println("Quantidade de pecas: " + this.getQuantidadePecas());
     }
