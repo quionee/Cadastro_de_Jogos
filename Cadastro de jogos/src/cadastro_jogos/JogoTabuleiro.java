@@ -19,13 +19,24 @@ public class JogoTabuleiro extends Jogo {
         this.quantidadePecas = quantidadePecas;
     }
 
-
-
     public String getMaterial() {
         return material;
     }
 
     public int getQuantidadePecas() {
         return quantidadePecas;
+    }
+    public void imprime() {
+        System.out.println("Tipo: Jogo Eletronico");
+        System.out.println("Codigo: " + this.getCodigo());
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Faixa Etaria: " + this.getFaixaEtaria());
+        System.out.println("Popularidade: " + this.getPopularidade());
+        System.out.println("Ano de lancamento: " + this.getAnoLancamento());
+        System.out.println("Quantidade de jogadores: " + this.getQuantidadeJogadores());
+        System.out.println("Produtora:" + this.getProdutora().getNome());
+        System.out.println("CNPJ: " + this.getProdutora().getCnpj());
+        System.out.println("Material do Tabuleiro: " + this.getMaterial());
+        System.out.println("Quantidade de pecas: " + this.getQuantidadePecas());
     }
 }

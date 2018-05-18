@@ -30,9 +30,6 @@ public class Jogo {
         this.produtora = produtora;
     }
 
-
-   
-
     public String getTipo() {
         return tipo;
     }
@@ -61,4 +58,14 @@ public class Jogo {
         return anoLancamento;
     }
 
+    public int getQuantidadeJogadores() {
+        return quantidadeJogadores;
+    }
+
+    public Produtora getProdutora() {
+        return produtora;
+    }
+    
+    public void imprime(){
+    }
 }

@@ -25,5 +25,4 @@ public class Produtora {
     public String getNome() {
         return nome;
     }
-    
 }
