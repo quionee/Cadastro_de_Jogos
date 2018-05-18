@@ -66,14 +66,16 @@ public class Main {
                     break;
             }
             
-            System.out.println("Digite a opcao");
+            System.out.println(" \n Digite a opcao");
             System.out.println("1 para inserir");
             System.out.println("2 para Salvar");
             System.out.println("3 para listar jogos salvos no arquivo");
             System.out.println("4 para remover");
             System.out.println("5 imprimir a lista de jogos");
             System.out.println("6 para carregar arquivo");
-            System.out.println("7 para terminar \n");
+            System.out.println("7 para buscar um jogo");
+            System.out.println("8 para terminar \n");
+        
             
             opcao = ler.nextInt();
         }

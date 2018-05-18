@@ -33,7 +33,7 @@ public class Controlador {
 
     void cadastraJogo() {
         System.out.println("Adicionar novo jogo");
-        System.out.println("Digita o tipo do jogo carai");
+        System.out.println("Digite o tipo do jogo\n -T (tabuleiro)\n -C (cartas)\n -E (eletronico)\n" );
         
         String tipo = ler.nextLine();// verifica qual tipo de jogo é
         // criei um if pra cada pq cada tipo tem parametros diferentes
@@ -58,49 +58,85 @@ public class Controlador {
             System.out.print("Quantidade de Jogadores: ");
             int qtdJogadores = Integer.parseInt(ler.nextLine());
             
-            System.out.print("Produtora: ");
-            System.out.print("CNPJ: ");
-            String cnpj = ler.nextLine();
+            System.out.println("O jogo possui uma produtora conhecida?\n -1: Sim\n -2: Nao\n");
+            int opcao = Integer.parseInt(ler.nextLine());
+            if (opcao == 1) {
+                System.out.print("Produtora: \n");
+                System.out.print("CNPJ: ");
+                String cnpj = ler.nextLine();
+
+                System.out.print("Nome: ");
+                String nomeP = ler.nextLine();
+
+                Produtora produtora = new Produtora(cnpj,nomeP);
             
-            System.out.println("Nome: ");
-            String nomeP = ler.nextLine();
-            
-            Produtora produtora = new Produtora(cnpj,nomeP);
-           
-            if (tipo.equals("C")) {       /////////// insere um jogo de cartas 
+                if (tipo.equals("C")) {       /////////// insere um jogo de cartas 
 
-                System.out.print("Quantidade de Cartas: ");
-                int qtdCartas = Integer.parseInt(ler.nextLine());
-                String materialBaralho = ler.nextLine();
+                    System.out.print("Quantidade de Cartas: ");
+                    int qtdCartas = Integer.parseInt(ler.nextLine());
 
-                Jogo umJogo = new JogoCartas(qtdCartas, materialBaralho, tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
-                System.out.println("fala galera");
-                // this.jogosCartas.add((JogoCartas) umJogo);
-                this.lista.add(umJogo);
+                    System.out.print("Material do baralho: ");
+                    String materialBaralho = ler.nextLine();
+                    Jogo umJogo = new JogoCartas(qtdCartas, materialBaralho, tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
+                    // this.jogosCartas.add((JogoCartas) umJogo);
+                    this.lista.add(umJogo);
+                }
+                else if (tipo.equals("E")) {           // insere um jogo eletronico
+
+                    System.out.print("Genero: ");
+                    String genero = ler.nextLine();
+                    String console = ler.nextLine();
+                    Jogo umJogo = new JogoEletronico(genero, console,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
+                    this.lista.add(umJogo);
+                }
+                else if (tipo.equals("T")) {       // insere um jogo de tabuleiro
+
+                    System.out.print("Material do tabuleiro: ");
+                    String material = ler.nextLine();
+
+                    System.out.print("Quantidade de Pecas: ");
+                    int qtdPecas = Integer.parseInt(ler.nextLine());
+
+                    Jogo umJogo = new JogoTabuleiro(material,qtdPecas, tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores, produtora);
+
+                    this.lista.add(umJogo);
+                }
             }
-            else if (tipo.equals("E")) {           // insere um jogo eletronico
+            else if (opcao == 2) {
+                if (tipo.equals("C")) {       /////////// insere um jogo de cartas 
+                    System.out.print("Quantidade de Cartas: ");
+                    int qtdCartas = Integer.parseInt(ler.nextLine());
 
-                System.out.print("Genero: ");
-                String genero = ler.nextLine();
-                String console = ler.nextLine();
-                Jogo umJogo = new JogoEletronico(genero, console,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores,produtora);
-                this.lista.add(umJogo);
-            }
-            else if (tipo.equals("T")) {       // insere um jogo de tabuleiro
-         
-                System.out.print("Nome da Material do tabuleiro: ");
-                String material = ler.nextLine();
+                    System.out.print("Material do baralho: ");
+                    String materialBaralho = ler.nextLine();
+                    Jogo umJogo = new JogoCartas(qtdCartas, materialBaralho, tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores);
+                    // this.jogosCartas.add((JogoCartas) umJogo);
+                    this.lista.add(umJogo);
+                }
+                else if (tipo.equals("E")) {           // insere um jogo eletronico
 
-                System.out.print("Quantidade de Pecas: ");
-                int qtdPecas = Integer.parseInt(ler.nextLine());
+                    System.out.print("Genero: ");
+                    String genero = ler.nextLine();
+                    String console = ler.nextLine();
+                    Jogo umJogo = new JogoEletronico(genero, console,tipo,codigo, nome, faixaEtaria, popularidade, anoLancamento,qtdJogadores);
+                    this.lista.add(umJogo);
+                }
+                else if (tipo.equals("T")) {       // insere um jogo de tabuleiro
 
-                Jogo umJogo = new JogoTabuleiro(material,qtdPecas, tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores, produtora);
+                    System.out.print("Material do tabuleiro: ");
+                    String material = ler.nextLine();
 
-                this.lista.add(umJogo);
+                    System.out.print("Quantidade de Pecas: ");
+                    int qtdPecas = Integer.parseInt(ler.nextLine());
+
+                    Jogo umJogo = new JogoTabuleiro(material,qtdPecas, tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, qtdJogadores);
+
+                    this.lista.add(umJogo);
+                }
             }
         }    
         else {
-            System.out.println("TENTE NOVAMENTE\n");
+            System.out.println("TENTE NOVAMENTE \n");
         }
     }
     
@@ -115,11 +151,14 @@ public class Controlador {
             gravarArq.println(jogo.getFaixaEtaria());
             gravarArq.println(jogo.getPopularidade());
             gravarArq.println(jogo.getAnoLancamento());
+            gravarArq.println(jogo.getQuantidadeJogadores());
             gravarArq.println(jogo.produtora.getCnpj());
             gravarArq.println(jogo.produtora.getNome());
             
             if (jogo instanceof JogoCartas) {  
                 gravarArq.println(((JogoCartas)jogo).getQuantidadeCartas());
+                gravarArq.println(((JogoCartas)jogo).getMaterialBaralho());
+                System.out.println(((JogoCartas)jogo).getMaterialBaralho());
             }
             else if (jogo instanceof JogoTabuleiro) {
                 gravarArq.println(((JogoTabuleiro)jogo).getMaterial());
@@ -127,15 +166,16 @@ public class Controlador {
             }
             else if (jogo instanceof JogoEletronico) {
                 gravarArq.println(((JogoEletronico)jogo).getGenero());
+                gravarArq.println(((JogoEletronico)jogo).getConsole());
             }
         }
             gravarArq.flush();
     }
     
     public void CarregarArquivo() throws IOException {
-        FileReader arq;
+ 
         try {
-            arq = new FileReader("cadastro_de_jogos");
+            FileReader arq = new FileReader("cadastro_de_jogos");
             BufferedReader lerArq = new BufferedReader(arq);
             String linha = lerArq.readLine();
             if(linha == null) {
@@ -151,9 +191,9 @@ public class Controlador {
                         int popularidade = Integer.parseInt(lerArq.readLine());
                         int anoLancamento = Integer.parseInt(lerArq.readLine());
                         int qtdJogadores = Integer.parseInt(lerArq.readLine());
-                        String cnpj = ler.nextLine();
-                        String nomeP = ler.nextLine();
-                                                
+                        String cnpj = lerArq.readLine();
+                        String nomeP = lerArq.readLine();
+                       
                         Produtora produtora = new Produtora(cnpj,nomeP);
                         if (tipo.equals("C")) { // se for um jogo de cartas
                             int qtdCartas = Integer.parseInt(lerArq.readLine());
@@ -202,43 +242,50 @@ public class Controlador {
                     System.out.println(t);
                     if (t.equals("C") || t.equals("T") || t.equals("E") ) {
                         linha = lerArq.readLine();
-                        System.out.println("Codigo do Jogo :" + linha);
+                        System.out.println("Codigo do Jogo: " + linha);
 
                         linha = lerArq.readLine();
-                        System.out.println("Nome :" + linha);
+                        System.out.println("Nome: " + linha);
 
                         linha = lerArq.readLine();
-                        System.out.println("Faixa Etaria :" + linha);
+                        System.out.println("Faixa Etaria: " + linha);
 
                         linha = lerArq.readLine();
-                        System.out.println("Popularidade:" + linha);
+                        System.out.println("Popularidade: " + linha);
 
                         linha = lerArq.readLine();
-                        System.out.println("Ano de Lancamento :" + linha);
+                        System.out.println("Ano de Lancamento: " + linha);
+                        
+                        linha = lerArq.readLine();
+                        System.out.println("Quantidade de Jogadores: " + linha);
+                        
+                        linha = lerArq.readLine();
+                        System.out.println("CNPJ da produtora: " + linha );
+                            
+                        linha = lerArq.readLine();
+                        System.out.println("Nome da produtora: " + linha);
 
                         if (t.equals("C")) { // se for um jogo de cartas
                             linha = lerArq.readLine();
-                            System.out.println("Quantidade de Cartas:" + linha);
+                            System.out.println("Quantidade de Cartas: " + linha);
 
                             linha = lerArq.readLine();
-                            System.out.println("Quantidade de Jogadores :" + linha + "\n");
+                            System.out.println("Material do baralho: " + linha + "\n");
                         }
                         else if (t.equals("E")) {
                             linha = lerArq.readLine();
-                            System.out.println("Produtora :" + linha);
-
+                            System.out.println("Genero: " + linha);
+                            
                             linha = lerArq.readLine();
-                            System.out.println("Genero :" + linha + "\n");
+                            System.out.println("Console: " + linha + "\n");
                         }
                         else if (t.equals("T")) {
                             linha = lerArq.readLine();
-                            System.out.println("AMterial do tabuleiro:" + linha);
+                            System.out.println("Material do tabuleiro: " + linha);
 
                             linha = lerArq.readLine();
-                            System.out.println("Quantidades de pecas :" + linha);
+                            System.out.println("Quantidades de pecas: " + linha + "\n");
 
-                            linha = lerArq.readLine();
-                            System.out.println("Quantidades de jogadores:" + linha + "\n");
                         }
                         linha = lerArq.readLine();
                         t = linha;
@@ -264,7 +311,7 @@ public class Controlador {
                 if (j.getCodigo() == id) {
                     achou = true;
                     lista.remove(j);
-                    System.out.println("Removido com su su sucesso \n");
+                    System.out.println("Removido com sucesso \n");
                     break;
                 }
             }
@@ -279,7 +326,7 @@ public class Controlador {
             System.out.println("Lista vazia \n");
         }
         else {
-            for(Jogo jogo : this.lista) {
+            for(Jogo jogo : this.lista) {;
                 System.out.println(jogo.getTipo());
                 System.out.println(jogo.getCodigo());
                 System.out.println(jogo.getNome());

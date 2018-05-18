@@ -14,6 +14,16 @@ public class JogoCartas extends Jogo {
         this.materialBaralho = materialBaralho;
     }
 
+    public JogoCartas(int quantidadeCartas, String materialBaralho, String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int quantidadeJogadores) {
+        super(tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, quantidadeJogadores);
+        this.quantidadeCartas = quantidadeCartas;
+        this.materialBaralho = materialBaralho;
+    }
+
+    
+    
+    
+
     public int getQuantidadeCartas() {
         return this.quantidadeCartas;
     }
@@ -32,7 +42,7 @@ public class JogoCartas extends Jogo {
         System.out.println("Popularidade: " + this.getPopularidade());
         System.out.println("Ano de lancamento: " + this.getAnoLancamento());
         System.out.println("Quantidade de jogadores: " + this.getQuantidadeJogadores());
-        System.out.println("Produtora:" + this.getProdutora().getNome());
+        System.out.println("Produtora: \n ome: " + this.getProdutora().getNome());
         System.out.println("CNPJ: " + this.getProdutora().getCnpj());
         System.out.println("Quantidade de cartas: " + this.getQuantidadeCartas());
         System.out.println("Material do Baralho: " + this.getMaterialBaralho());

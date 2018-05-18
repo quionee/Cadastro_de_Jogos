@@ -18,6 +18,14 @@ public class JogoEletronico extends Jogo {
         this.console = console;
     }
 
+    public JogoEletronico(String genero, String console, String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int quantidadeJogadores) {
+        super(tipo, codigo, nome, faixaEtaria, popularidade, anoLancamento, quantidadeJogadores);
+        this.genero = genero;
+        this.console = console;
+    }
+    
+    
+
     public String getGenero() {
         return genero;
     }
@@ -37,7 +45,7 @@ public class JogoEletronico extends Jogo {
         System.out.println("Popularidade: " + this.getPopularidade());
         System.out.println("Ano de lancamento: " + this.getAnoLancamento());
         System.out.println("Quantidade de jogadores: " + this.getQuantidadeJogadores());
-        System.out.println("Produtora:" + this.getProdutora().getNome());
+        System.out.println("Produtora: \n Nome: " + this.getProdutora().getNome());
         System.out.println("CNPJ: " + this.getProdutora().getCnpj());
         System.out.println("Genero: " + this.getGenero());
         System.out.println("Console " + this.getConsole());

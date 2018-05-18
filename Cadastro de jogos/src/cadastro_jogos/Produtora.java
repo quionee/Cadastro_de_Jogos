@@ -18,6 +18,13 @@ public class Produtora {
         this.nome = nome;
     }
 
+    public Produtora() {
+        this.cnpj = "-";
+        this.nome = "-";
+    }
+    
+    
+
     public String getCnpj() {
         return cnpj;
     }
@@ -25,4 +32,13 @@ public class Produtora {
     public String getNome() {
         return nome;
     }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
 }

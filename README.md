@@ -5,7 +5,7 @@
     Cadastrar dados: cadastra os atributos necessários dos objetos [x]
     Listar dados cadastrados[x]
     Remover dados[x]
-    Buscar dados[ ]
+    Buscar dados[x]
     Salvar os dados em um arquivo informado pelo usuário* [x]
     Recuperar os dados salvos em um arquivo informado pelo usuário*[x]
 
@@ -23,8 +23,8 @@
 <h1>Observações</h1>
 
 	Herança: [x]
-	Sobrecarga de métodos: [ ]
-	Sobrescrita de métodos: [ ]
+	Sobrecarga de métodos: [x]
+	Sobrescrita de métodos: [x]
 	Encapsulamento: [x]
 
 *As operações de salvar e recuperar devem ser executadas somente quando solicitadas pelo usuário, i.e., as operações devem ser feitas em memória principal e salvas quando solicitado. Preferencialmente em arquivo de texto em formato definido pelos membros do grupo.

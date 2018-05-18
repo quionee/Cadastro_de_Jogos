@@ -30,6 +30,17 @@ public class Jogo {
         this.produtora = produtora;
     }
 
+    public Jogo(String tipo, int codigo, String nome, int faixaEtaria, int popularidade, int anoLancamento, int quantidadeJogadores) {
+        this.tipo = tipo;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.faixaEtaria = faixaEtaria;
+        this.popularidade = popularidade;
+        this.anoLancamento = anoLancamento;
+        this.quantidadeJogadores = quantidadeJogadores;
+        this.produtora = new Produtora();
+    }
+
     public String getTipo() {
         return tipo;
     }
