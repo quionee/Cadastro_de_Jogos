@@ -22,8 +22,6 @@ public class Produtora {
         this.cnpj = "-";
         this.nome = "-";
     }
-    
-    
 
     public String getCnpj() {
         return cnpj;

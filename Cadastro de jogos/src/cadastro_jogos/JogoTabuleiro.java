@@ -24,8 +24,6 @@ public class JogoTabuleiro extends Jogo {
         this.material = material;
         this.quantidadePecas = quantidadePecas;
     }
-    
-    
 
     public String getMaterial() {
         return material;

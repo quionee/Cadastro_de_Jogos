@@ -20,10 +20,6 @@ public class JogoCartas extends Jogo {
         this.materialBaralho = materialBaralho;
     }
 
-    
-    
-    
-
     public int getQuantidadeCartas() {
         return this.quantidadeCartas;
     }
@@ -31,7 +27,6 @@ public class JogoCartas extends Jogo {
     public String getMaterialBaralho() {
         return materialBaralho;
     }
-    
     
     @Override
     public void imprime(){

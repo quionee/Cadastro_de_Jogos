@@ -33,9 +33,7 @@ public class JogoEletronico extends Jogo {
     public String getConsole() {
         return console;
     }
-    
-    
-    
+
     @Override
     public void imprime(){
         System.out.println("Tipo: Jogo Eletronico");
