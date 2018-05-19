@@ -179,7 +179,7 @@ public class Controlador {
             gravarArq.flush();
     }
     
-    public void CarregarArquivo() throws IOException {
+    public void carregarArquivo() throws IOException {
         try {
             FileReader arq = new FileReader("cadastro_de_jogos"); // Cria objeto que recebe o arquivo em modo de leitura
             BufferedReader lerArq = new BufferedReader(arq); // Cria objeto de leitura do arquivo

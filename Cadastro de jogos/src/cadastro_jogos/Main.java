@@ -72,7 +72,7 @@ public class Main {
                     }
                     break;
                 case 5:
-                    controlador.CarregarArquivo();
+                    controlador.carregarArquivo();
                     break;
                 case 6:
                     controlador.imprimeList();
