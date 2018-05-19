@@ -250,7 +250,7 @@ public class Controlador {
             else {
                 String t = linha;
                 while (linha != null) {
-                    System.out.println(t);
+                    System.out.println("Tipo: " + t);
                     if (t.equals("C") || t.equals("T") || t.equals("E") ) { // Verifica se o tipo do jogo e' valido
                         // Os atributos comuns a todas as classes filhas (atributos herdados da classe pai (Jogo)) sao lidos
                         linha = lerArq.readLine();
