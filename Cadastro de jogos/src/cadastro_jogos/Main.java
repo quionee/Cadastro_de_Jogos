@@ -24,18 +24,19 @@ public class Main {
         System.out.println("1 para inserir");
         System.out.println("2 para remover");
         System.out.println("3 para buscar um jogo");
-        System.out.println("4 para carregar arquivo na memoria");
-        System.out.println("5 para listar jogos da memoria");
-        System.out.println("6 para listar jogos do arquivo");
-        System.out.println("7 para salvar memoria no arquivo");
-        System.out.println("8 para terminar \n");
+        System.out.println("4 para alterar a popularidade do jogo");
+        System.out.println("5 para carregar arquivo na memoria");
+        System.out.println("6 para listar jogos da memoria");
+        System.out.println("7 para listar jogos do arquivo");
+        System.out.println("8 para salvar memoria no arquivo");
+        System.out.println("9 para terminar \n");
         
         Scanner ler = new Scanner(System.in);
         
         int opcao = Integer.parseInt(ler.nextLine());
         
         System.out.println();
-        while (opcao != 8) {
+        while (opcao != 9) {
             switch (opcao) {
                 case 1:
                     controlador.cadastraJogo();
@@ -57,15 +58,29 @@ public class Main {
                     }
                     break;
                 case 4:
-                    controlador.CarregarArquivo();
+                    System.out.print("Digite o codigo do jogo: ");
+                    int idPop = ler.nextInt();
+                    Jogo jogoPop = controlador.busca(idPop);
+                    if (jogoPop == null) {
+                        System.out.println("\nCodigo invalido");
+                    }
+                    else {
+                        System.out.print("Digite a nova popularidade do jogo (1 a 5): ");
+                        int novaPop = ler.nextInt();
+                        jogoPop.setPopularidade(novaPop);
+                        System.out.print("Popularidade atualizada\n");
+                    }
                     break;
                 case 5:
-                    controlador.imprimeList();
+                    controlador.CarregarArquivo();
                     break;
                 case 6:
-                    controlador.lerArquivo();
+                    controlador.imprimeList();
                     break;
                 case 7:
+                    controlador.lerArquivo();
+                    break;
+                case 8:
                     controlador.salvarNoArq();
                     break;
                 default:
@@ -77,11 +92,12 @@ public class Main {
             System.out.println("1 para inserir");
             System.out.println("2 para remover");
             System.out.println("3 para buscar um jogo");
-            System.out.println("4 para carregar arquivo na memoria");
-            System.out.println("5 para listar jogos da memoria");
-            System.out.println("6 para listar jogos do arquivo");
-            System.out.println("7 para salvar memoria no arquivo");
-            System.out.println("8 para terminar \n");
+            System.out.println("4 para alterar a popularidade do jogo");
+            System.out.println("5 para carregar arquivo na memoria");
+            System.out.println("6 para listar jogos da memoria");
+            System.out.println("7 para listar jogos do arquivo");
+            System.out.println("8 para salvar memoria no arquivo");
+            System.out.println("9 para terminar \n");
         
             opcao = ler.nextInt();
             System.out.println();
